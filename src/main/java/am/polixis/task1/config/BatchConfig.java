@@ -13,6 +13,7 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.MultiResourceItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
@@ -27,9 +28,6 @@ import java.util.Comparator;
 @EnableBatchProcessing
 @RequiredArgsConstructor
 public class BatchConfig {
-
-    @Value("${zip-file-path}")
-    private Resource resource;
 
     private final EmployeeWriter writer;
     private final EmployeeProcessor processor;
@@ -56,9 +54,8 @@ public class BatchConfig {
     }
 
     @Bean
-    public ArchiveResourceItemReader<EmployeeDto> multiResourceItemReader() {
-        ArchiveResourceItemReader<EmployeeDto> resourceItemReader = new ArchiveResourceItemReader<>();
-        resourceItemReader.setResource(resource);
+    public MultiResourceItemReader<EmployeeDto> multiResourceItemReader() {
+        MultiResourceItemReader<EmployeeDto> resourceItemReader = new ArchiveResourceItemReader<>();
         resourceItemReader.setDelegate(reader());
         resourceItemReader.setComparator(Comparator.comparing(Resource::getDescription));
         return resourceItemReader;

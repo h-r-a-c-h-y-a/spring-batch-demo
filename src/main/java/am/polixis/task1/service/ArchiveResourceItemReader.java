@@ -3,6 +3,8 @@ package am.polixis.task1.service;
 import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.ItemStreamException;
 import org.springframework.batch.item.file.MultiResourceItemReader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.lang.NonNull;
@@ -57,7 +59,8 @@ public class ArchiveResourceItemReader<T> extends MultiResourceItemReader<T> {
                 }).toArray(Resource[]::new);
     }
 
-    public void setResource(Resource resource) {
+    @Autowired
+    public void setResource(@Value("${zip-file-path}") Resource resource) {
         this.resource = resource;
     }
 }
