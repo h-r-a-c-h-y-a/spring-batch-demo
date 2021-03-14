@@ -1,6 +1,6 @@
-package am.polixis.task1.repository;
+package am.polixis.spring_batch_demo.repository;
 
-import am.polixis.task1.entity.Employee;
+import am.polixis.spring_batch_demo.entity.Employee;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

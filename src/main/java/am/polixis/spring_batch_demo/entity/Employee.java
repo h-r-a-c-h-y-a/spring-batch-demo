@@ -1,5 +1,6 @@
-package am.polixis.task1.entity;
+package am.polixis.spring_batch_demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,4 +23,9 @@ public class Employee {
     private String lastName;
 
     private LocalDate date;
+
+    @JsonGetter
+    public String getDate() {
+        return date.toString();
+    }
 }

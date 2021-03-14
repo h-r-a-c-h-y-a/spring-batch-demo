@@ -1,10 +1,10 @@
-package am.polixis.task1.config;
+package am.polixis.spring_batch_demo.config;
 
-import am.polixis.task1.dto.EmployeeDto;
-import am.polixis.task1.entity.Employee;
-import am.polixis.task1.service.ArchiveResourceItemReader;
-import am.polixis.task1.service.EmployeeProcessor;
-import am.polixis.task1.service.EmployeeWriter;
+import am.polixis.spring_batch_demo.dto.EmployeeDto;
+import am.polixis.spring_batch_demo.entity.Employee;
+import am.polixis.spring_batch_demo.service.ArchiveResourceItemReader;
+import am.polixis.spring_batch_demo.service.EmployeeProcessor;
+import am.polixis.spring_batch_demo.service.EmployeeWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -28,6 +28,8 @@ import java.util.Comparator;
 @EnableBatchProcessing
 @RequiredArgsConstructor
 public class BatchConfig {
+    @Value("${zip-file-path}")
+    private Resource resource;
 
     private final EmployeeWriter writer;
     private final EmployeeProcessor processor;
@@ -55,7 +57,8 @@ public class BatchConfig {
 
     @Bean
     public MultiResourceItemReader<EmployeeDto> multiResourceItemReader() {
-        MultiResourceItemReader<EmployeeDto> resourceItemReader = new ArchiveResourceItemReader<>();
+        ArchiveResourceItemReader<EmployeeDto> resourceItemReader = new ArchiveResourceItemReader<>();
+        resourceItemReader.setResource(resource);
         resourceItemReader.setDelegate(reader());
         resourceItemReader.setComparator(Comparator.comparing(Resource::getDescription));
         return resourceItemReader;
@@ -66,13 +69,13 @@ public class BatchConfig {
         FlatFileItemReader<EmployeeDto> reader = new FlatFileItemReader<>();
         reader.setLinesToSkip(1);
         reader.setLineMapper(new DefaultLineMapper<>() {{
-                setLineTokenizer(new DelimitedLineTokenizer() {{
-                        setNames("firstName", "lastName", "date");
-                    }});
-                setFieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
-                        setTargetType(EmployeeDto.class);
-                    }});
+            setLineTokenizer(new DelimitedLineTokenizer() {{
+                setNames("firstName", "lastName", "date");
             }});
+            setFieldSetMapper(new BeanWrapperFieldSetMapper<>() {{
+                setTargetType(EmployeeDto.class);
+            }});
+        }});
         return reader;
     }
 }

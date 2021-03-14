@@ -1,4 +1,4 @@
-package am.polixis.task1;
+package am.polixis.spring_batch_demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

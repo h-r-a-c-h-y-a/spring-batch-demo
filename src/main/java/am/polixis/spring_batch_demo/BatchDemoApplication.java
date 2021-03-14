@@ -1,7 +1,9 @@
-package am.polixis.task1;
+package am.polixis.spring_batch_demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import javax.annotation.PreDestroy;
 
 @SpringBootApplication
 public class BatchDemoApplication {
@@ -10,4 +12,8 @@ public class BatchDemoApplication {
         SpringApplication.run(BatchDemoApplication.class, args).getBeanFactory();
     }
 
+    @PreDestroy
+    public void s() {
+        System.out.println();
+    }
 }
