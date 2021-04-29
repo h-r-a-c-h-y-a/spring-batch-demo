@@ -1,0 +1,7 @@
+first line
+second line
+<<<<<<< HEAD
+third line is specific
+=======
+third line is so specific and I wrote it right
+>>>>>>> feature
