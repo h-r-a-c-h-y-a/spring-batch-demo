@@ -11,9 +11,4 @@ public class BatchDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(BatchDemoApplication.class, args).getBeanFactory();
     }
-
-    @PreDestroy
-    public void s() {
-        System.out.println();
-    }
 }
