@@ -9,7 +9,7 @@ class BatchDemoApplicationTests {
     @Test
     void test() {
         String env = System.getenv("env");
-        assertNotEquals("QAT", env);
+        assertNotEquals("DEV", env);
     }
 
 }
