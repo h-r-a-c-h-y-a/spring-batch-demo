@@ -12,5 +12,10 @@ class BatchDemoApplicationTests {
         assertNull(env);
     }
 
+    @Test
+    void test2() {
+        String env = System.getenv("env");
+        assertNotEquals("PROD", env);
+    }
 
 }
