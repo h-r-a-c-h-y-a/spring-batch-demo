@@ -21,7 +21,6 @@ target/
 
 ### NetBeans ###
 /dist/
-/nbdist/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
