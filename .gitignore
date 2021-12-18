@@ -20,6 +20,7 @@ target/
 
 ### NetBeans ###
 /dist/
+/.nb-gradle/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
