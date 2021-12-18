@@ -1,13 +1,15 @@
 package am.polixis.spring_batch_demo;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 class BatchDemoApplicationTests {
 
     @Test
-    void contextLoads() {
+    void test() {
+        String env = System.getenv("env");
+        assertNotEquals("PROD", env);
     }
 
 }
