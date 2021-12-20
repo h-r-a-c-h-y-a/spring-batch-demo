@@ -18,7 +18,7 @@ target/
 *.iml
 *.ipr
 
-### NetBeans ###
+### Ncd .etBeans ###
 /dist/
 /.nb-gradle/
 build/
