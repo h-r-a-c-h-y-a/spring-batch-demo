@@ -16,6 +16,7 @@ target/
 .idea
 *.iws
 *.iml
+*.ipr
 
 ### NetBeans ###
 /dist/
